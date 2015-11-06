@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "DepartmentTableViewController.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +18,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    UINavigationController *nav = (UINavigationController*)self.window.rootViewController;
+    DepartmentTableViewController *departmentTableViewController = (DepartmentTableViewController*)[[nav viewControllers]objectAtIndex:0];
+    departmentTableViewController.managedObjectContext = self.managedObjectContext;
     return YES;
 }
 

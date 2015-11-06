@@ -8,14 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		A72866CC1BEBD0170020967E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A72866CB1BEBD0170020967E /* main.m */; };
-		A72866CF1BEBD0170020967E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A72866CE1BEBD0170020967E /* AppDelegate.m */; };
-		A72866D21BEBD0170020967E /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A72866D11BEBD0170020967E /* ViewController.m */; };
 		A72866D51BEBD0170020967E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72866D31BEBD0170020967E /* Main.storyboard */; };
 		A72866D81BEBD0170020967E /* ObjectiveC_Master.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A72866D61BEBD0170020967E /* ObjectiveC_Master.xcdatamodeld */; };
 		A72866DA1BEBD0170020967E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A72866D91BEBD0170020967E /* Assets.xcassets */; };
 		A72866DD1BEBD0170020967E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A72866DB1BEBD0170020967E /* LaunchScreen.storyboard */; };
 		A72866E81BEBD0170020967E /* ObjectiveC_MasterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A72866E71BEBD0170020967E /* ObjectiveC_MasterTests.m */; };
 		A72866F31BEBD0170020967E /* ObjectiveC_MasterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A72866F21BEBD0170020967E /* ObjectiveC_MasterUITests.m */; };
+		A72867101BEBD2020020967E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A728670F1BEBD2020020967E /* AppDelegate.m */; };
+		A72867191BEBD27A0020967E /* DepartmentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A72867181BEBD27A0020967E /* DepartmentTableViewController.m */; };
+		A728671E1BEBD2B50020967E /* Department.m in Sources */ = {isa = PBXBuildFile; fileRef = A728671B1BEBD2B50020967E /* Department.m */; };
+		A728671F1BEBD2B50020967E /* Department+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = A728671D1BEBD2B50020967E /* Department+CoreDataProperties.m */; };
+		A72867231BEBEB580020967E /* DetailDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A72867221BEBEB580020967E /* DetailDepartmentViewController.m */; };
+		A734C7BA1BEC006200774EF0 /* EditDepartmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A734C7B91BEC006200774EF0 /* EditDepartmentViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,10 +42,6 @@
 /* Begin PBXFileReference section */
 		A72866C71BEBD0170020967E /* ObjectiveC-Master.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ObjectiveC-Master.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72866CB1BEBD0170020967E /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		A72866CD1BEBD0170020967E /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		A72866CE1BEBD0170020967E /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		A72866D01BEBD0170020967E /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		A72866D11BEBD0170020967E /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		A72866D41BEBD0170020967E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A72866D71BEBD0170020967E /* ObjectiveC_Master.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ObjectiveC_Master.xcdatamodel; sourceTree = "<group>"; };
 		A72866D91BEBD0170020967E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -53,6 +53,18 @@
 		A72866EE1BEBD0170020967E /* ObjectiveC-MasterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ObjectiveC-MasterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A72866F21BEBD0170020967E /* ObjectiveC_MasterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ObjectiveC_MasterUITests.m; sourceTree = "<group>"; };
 		A72866F41BEBD0170020967E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A728670E1BEBD2020020967E /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		A728670F1BEBD2020020967E /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		A72867171BEBD27A0020967E /* DepartmentTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartmentTableViewController.h; sourceTree = "<group>"; };
+		A72867181BEBD27A0020967E /* DepartmentTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartmentTableViewController.m; sourceTree = "<group>"; };
+		A728671A1BEBD2B50020967E /* Department.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Department.h; sourceTree = "<group>"; };
+		A728671B1BEBD2B50020967E /* Department.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Department.m; sourceTree = "<group>"; };
+		A728671C1BEBD2B50020967E /* Department+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Department+CoreDataProperties.h"; sourceTree = "<group>"; };
+		A728671D1BEBD2B50020967E /* Department+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Department+CoreDataProperties.m"; sourceTree = "<group>"; };
+		A72867211BEBEB580020967E /* DetailDepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailDepartmentViewController.h; sourceTree = "<group>"; };
+		A72867221BEBEB580020967E /* DetailDepartmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailDepartmentViewController.m; sourceTree = "<group>"; };
+		A734C7B81BEC006200774EF0 /* EditDepartmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDepartmentViewController.h; sourceTree = "<group>"; };
+		A734C7B91BEC006200774EF0 /* EditDepartmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDepartmentViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,10 +115,8 @@
 		A72866C91BEBD0170020967E /* ObjectiveC-Master */ = {
 			isa = PBXGroup;
 			children = (
-				A72866CD1BEBD0170020967E /* AppDelegate.h */,
-				A72866CE1BEBD0170020967E /* AppDelegate.m */,
-				A72866D01BEBD0170020967E /* ViewController.h */,
-				A72866D11BEBD0170020967E /* ViewController.m */,
+				A72867061BEBD14D0020967E /* Application */,
+				A72867071BEBD14D0020967E /* Classes */,
 				A72866D31BEBD0170020967E /* Main.storyboard */,
 				A72866D91BEBD0170020967E /* Assets.xcassets */,
 				A72866DB1BEBD0170020967E /* LaunchScreen.storyboard */,
@@ -141,6 +151,48 @@
 				A72866F41BEBD0170020967E /* Info.plist */,
 			);
 			path = "ObjectiveC-MasterUITests";
+			sourceTree = "<group>";
+		};
+		A72867061BEBD14D0020967E /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				A728670E1BEBD2020020967E /* AppDelegate.h */,
+				A728670F1BEBD2020020967E /* AppDelegate.m */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		A72867071BEBD14D0020967E /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				A728670B1BEBD1C40020967E /* Model */,
+				A728670D1BEBD1C40020967E /* ViewController */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		A728670B1BEBD1C40020967E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A728671A1BEBD2B50020967E /* Department.h */,
+				A728671B1BEBD2B50020967E /* Department.m */,
+				A728671C1BEBD2B50020967E /* Department+CoreDataProperties.h */,
+				A728671D1BEBD2B50020967E /* Department+CoreDataProperties.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A728670D1BEBD1C40020967E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A72867171BEBD27A0020967E /* DepartmentTableViewController.h */,
+				A72867181BEBD27A0020967E /* DepartmentTableViewController.m */,
+				A72867211BEBEB580020967E /* DetailDepartmentViewController.h */,
+				A72867221BEBEB580020967E /* DetailDepartmentViewController.m */,
+				A734C7B81BEC006200774EF0 /* EditDepartmentViewController.h */,
+				A734C7B91BEC006200774EF0 /* EditDepartmentViewController.m */,
+			);
+			path = ViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -273,10 +325,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A72866D21BEBD0170020967E /* ViewController.m in Sources */,
-				A72866CF1BEBD0170020967E /* AppDelegate.m in Sources */,
+				A728671E1BEBD2B50020967E /* Department.m in Sources */,
+				A728671F1BEBD2B50020967E /* Department+CoreDataProperties.m in Sources */,
+				A734C7BA1BEC006200774EF0 /* EditDepartmentViewController.m in Sources */,
+				A72867231BEBEB580020967E /* DetailDepartmentViewController.m in Sources */,
 				A72866CC1BEBD0170020967E /* main.m in Sources */,
+				A72867191BEBD27A0020967E /* DepartmentTableViewController.m in Sources */,
 				A72866D81BEBD0170020967E /* ObjectiveC_Master.xcdatamodeld in Sources */,
+				A72867101BEBD2020020967E /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +556,7 @@
 				A72866F91BEBD0170020967E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A72866FA1BEBD0170020967E /* Build configuration list for PBXNativeTarget "ObjectiveC-MasterTests" */ = {
 			isa = XCConfigurationList;
@@ -508,6 +565,7 @@
 				A72866FC1BEBD0170020967E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A72866FD1BEBD0170020967E /* Build configuration list for PBXNativeTarget "ObjectiveC-MasterUITests" */ = {
 			isa = XCConfigurationList;
@@ -516,6 +574,7 @@
 				A72866FF1BEBD0170020967E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
