@@ -17,5 +17,8 @@
 @dynamic employeeName;
 @dynamic currentClient;
 @dynamic yearsOfExperience;
-
+- (NSString *)sectionTitle
+{
+    return [self.departmentName substringToIndex:1];
+}
 @end

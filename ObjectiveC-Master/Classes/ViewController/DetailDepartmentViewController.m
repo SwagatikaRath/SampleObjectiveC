@@ -16,11 +16,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     self.deptName.text = [self.currentDepartment departmentName];
     self.empName.text = [self.currentDepartment employeeName];
     self.clientName.text = [self.currentDepartment currentClient];
-    //self.experience.text = (NSString*)[self.currentDepartment yearsOfExperience];
+    self.experience.text = [[self.currentDepartment yearsOfExperience]stringValue];
     
 }
 
@@ -49,7 +48,7 @@
     self.currentDepartment.departmentName = self.deptName.text;
     self.currentDepartment.employeeName = self.empName.text;
     self.currentDepartment.currentClient = self.clientName.text;
-   //de self.currentDepartment.yearsOfExperience = (NSNumber*)self.experience.text;
+    self.currentDepartment.yearsOfExperience = @([self.experience.text integerValue]);
     
     [self.delegate addDetailViewControllerDidSave];
 }

@@ -20,6 +20,7 @@
     self.deptName.text = [self.currentDepartment departmentName];
     self.empName.text = [self.currentDepartment employeeName];
     self.clientName.text = [self.currentDepartment currentClient];
+    self.experience.text = [[self.currentDepartment yearsOfExperience] stringValue];
     
     deptName.userInteractionEnabled = NO;
     empName.userInteractionEnabled = NO;
@@ -74,7 +75,7 @@
     self.currentDepartment.departmentName = deptName.text;
     self.currentDepartment.employeeName = empName.text;
     self.currentDepartment.currentClient = clientName.text;
-  //  self.currentDepartment.yearsOfExperience = experience.text;
+    self.currentDepartment.yearsOfExperience = @([experience.text integerValue]);
     
     AppDelegate *myApp = (AppDelegate*)[[UIApplication sharedApplication] delegate];
     [myApp saveContext];

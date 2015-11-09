@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nullable, nonatomic, retain) NSString *employeeName;
 @property (nullable, nonatomic, retain) NSString *currentClient;
 @property (nullable, nonatomic, retain) NSNumber *yearsOfExperience;
-
+- (NSString *)sectionTitle;
 @end
 
 NS_ASSUME_NONNULL_END

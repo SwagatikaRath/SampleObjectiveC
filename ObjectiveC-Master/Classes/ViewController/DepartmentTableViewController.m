@@ -8,16 +8,25 @@
 
 #import "DepartmentTableViewController.h"
 #import "EditDepartmentViewController.h"
+#import "ResultsTableViewController.h"
 
 @interface DepartmentTableViewController () <DetailDepartmentViewControllerDelegate>
+@property(nonatomic,strong)NSMutableArray *searchResult;
+@property (nonatomic,strong) UISearchController *searchController;
+@property(nonatomic,strong)NSFetchRequest *searchFetch;
+
 
 @end
 
+
 @implementation DepartmentTableViewController
-@synthesize fetchedResultControler = _fetchedResultControler;
+@synthesize fetchedResultControler = _fetchedResultControler,searchResult;
+@synthesize searchFetch = _searchFetch;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     NSError *error = nil;
     if (![self.fetchedResultControler performFetch:&error]) {
         NSLog(@"Error!%@",error);
@@ -29,17 +38,38 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - Search FetchRequest
+-(NSFetchRequest*)searchFetch{
+    if (!_searchFetch) {
+        return _searchFetch;
+    }
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Department" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    
+    // Specify how the fetched objects should be sorted
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"departmentName"
+                                                                   ascending:YES];
+    [fetchRequest setSortDescriptors:[NSArray arrayWithObjects:sortDescriptor, nil]];
+    return _searchFetch;
+  
+}
+
+- (void)previewingContext:(id<UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit {
+    
+    [self showDetailViewController:viewControllerToCommit sender:self];
+}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [[self.fetchedResultControler sections]count];
+   return [[self.fetchedResultControler sections]count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    id <NSFetchedResultsSectionInfo> secInfo = [[self.fetchedResultControler sections]objectAtIndex:section];
     
-    return [secInfo numberOfObjects];
+        id <NSFetchedResultsSectionInfo> secInfo = [[self.fetchedResultControler sections]objectAtIndex:section];
+        return [secInfo numberOfObjects];
 }
 
 
@@ -51,13 +81,15 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         return cell;
     }
-    Department *department = (Department*)[self.fetchedResultControler objectAtIndexPath:indexPath];
+    Department *department = [self.fetchedResultControler objectAtIndexPath:indexPath];
     cell.textLabel.text = department.employeeName;
     return cell;
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
     return [[[self.fetchedResultControler sections] objectAtIndex:section] name];
+
+
 }
 
 /*
@@ -101,7 +133,7 @@
 #pragma mark - Fetch ResultViewController Section
 -(NSFetchedResultsController*)fetchedResultControler{
    
-    if (_fetchedResultControler) {
+  if (_fetchedResultControler) {
         return _fetchedResultControler;
     }
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -115,14 +147,16 @@
     _fetchedResultControler = [[NSFetchedResultsController alloc]initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"departmentName" cacheName:nil];
     _fetchedResultControler.delegate = self;
     return _fetchedResultControler;
-
-
+ 
 }
 -(void)controllerWillChangeContent:(NSFetchedResultsController *)controller{
     [self.tableView beginUpdates];
+
+
 }
 -(void)controllerDidChangeContent:(NSFetchedResultsController *)controller{
     [self.tableView endUpdates];
+
 }
 -(void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath{
     UITableView *tableView = self.tableView;
@@ -192,6 +226,5 @@
     }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-
 
 @end
