@@ -11,22 +11,31 @@
 #import "ResultsTableViewController.h"
 
 @interface DepartmentTableViewController () <DetailDepartmentViewControllerDelegate>
-@property(nonatomic,strong)NSMutableArray *searchResult;
-@property (nonatomic,strong) UISearchController *searchController;
+@property(nonatomic,strong)NSMutableArray *searchResultArray;
+@property (nonatomic,strong) UISearchDisplayController *searchDisplayController;
 @property(nonatomic,strong)NSFetchRequest *searchFetch;
-
 
 @end
 
-
 @implementation DepartmentTableViewController
-@synthesize fetchedResultControler = _fetchedResultControler,searchResult;
-@synthesize searchFetch = _searchFetch;
-
+@synthesize fetchedResultControler = _fetchedResultControler,searchResultArray;
+@synthesize searchFetch = _searchFetch,searchBar,searchDisplayController;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+   // Don't show the scope bar or cancel button until editing begins
     
+    searchBar.delegate = self;
+    searchDisplayController.delegate = self;
+    searchDisplayController.searchResultsDataSource = self;
+    searchDisplayController.searchResultsDelegate = self;
+    
+    [self.searchBar setShowsScopeBar:NO];
+    [self.searchBar sizeToFit];
+    // Reload the table
+    [[self tableView] reloadData];
+  
+    searchResultArray = [[NSMutableArray alloc]init];
     NSError *error = nil;
     if (![self.fetchedResultControler performFetch:&error]) {
         NSLog(@"Error!%@",error);
@@ -63,13 +72,28 @@
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-   return [[self.fetchedResultControler sections]count];
+  
+    if (tableView != self.searchDisplayController.searchResultsTableView)
+    {
+        return [[self.fetchedResultControler sections]count];
+    }
+    
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        return [searchResultArray count];
+    }
+    else
+    {
         id <NSFetchedResultsSectionInfo> secInfo = [[self.fetchedResultControler sections]objectAtIndex:section];
         return [secInfo numberOfObjects];
+    }
+
 }
 
 
@@ -81,14 +105,34 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
         return cell;
     }
-    Department *department = [self.fetchedResultControler objectAtIndexPath:indexPath];
-    cell.textLabel.text = department.employeeName;
+    Department *department  = nil;
+     NSString *scope = [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]];
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+    {
+        department = [searchResultArray objectAtIndex:[indexPath row]];
+        if ([scope isEqualToString:@"Department"]) {
+            cell.textLabel.text = department.departmentName;
+        }
+        else{
+             cell.textLabel.text = department.employeeName;
+        }
+    }
+    else
+    {
+        department = [self.fetchedResultControler objectAtIndexPath:indexPath];
+        cell.textLabel.text = department.employeeName;
+
+    }
+
     return cell;
 }
 
 -(NSString*)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return [[[self.fetchedResultControler sections] objectAtIndex:section] name];
+    if (tableView != self.searchDisplayController.searchResultsTableView) {
+        return [[[self.fetchedResultControler sections] objectAtIndex:section] name];
 
+    }
+    return nil;
 
 }
 
@@ -225,6 +269,66 @@
         NSLog(@"Error!%@",error);
     }
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark
+#pragma mark - UISearchBar Delegate
+#pragma mark
+#pragma mark Content Filtering
+
+- (BOOL)searchBarShouldBeginEditing:(UISearchBar *)searchBar
+{
+    return YES;
+}
+
+- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
+{
+    // Update the filtered array based on the search text and scope.
+    // Remove all objects from the filtered search array
+    [self.searchResultArray removeAllObjects];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Department" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSPredicate *predicate = nil;
+    if ([scope isEqualToString:@"Department"]) {
+    predicate = [NSPredicate predicateWithFormat:@"departmentName contains[c] %@", searchText];
+   
+    }else {
+        predicate = [NSPredicate predicateWithFormat:@"employeeName contains[c] %@", searchText];
+    }
+    
+    [fetchRequest setPredicate:predicate];
+    
+    NSError *error;
+    
+   searchResultArray = [[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] mutableCopy];
+    
+}
+
+
+#pragma mark - UISearchDisplayController Delegate Methods
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    // Tells the table data source to reload when text changes
+    [self filterContentForSearchText:searchString scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
+}
+
+
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
+{
+    // Tells the table data source to reload when scope bar selection changes
+    [self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:
+     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
+    
+    // Return YES to cause the search result table view to be reloaded.
+    return YES;
 }
 
 @end

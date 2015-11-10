@@ -13,9 +13,11 @@
 #import <CoreData/CoreData.h>
 
 
-@interface DepartmentTableViewController : UITableViewController <UISearchControllerDelegate,UISearchBarDelegate,UISearchResultsUpdating,NSFetchedResultsControllerDelegate>
+@interface DepartmentTableViewController : UITableViewController <UISearchBarDelegate,UISearchDisplayDelegate,NSFetchedResultsControllerDelegate>
 
 @property(nonatomic,strong)NSManagedObjectContext *managedObjectContext;
 @property(nonatomic,strong)NSFetchedResultsController *fetchedResultControler;
+@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+
 
 @end

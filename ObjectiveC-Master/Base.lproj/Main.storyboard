@@ -6,17 +6,29 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Root View Controller-->
+        <!--Department Table-->
         <scene sceneID="tLH-vv-UOQ">
             <objects>
-                <tableViewController id="lvb-1B-GbS" customClass="DepartmentTableViewController" sceneMemberID="viewController">
+                <tableViewController id="lvb-1B-GbS" userLabel="Department Table" customClass="DepartmentTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="rbB-nV-fHi">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" showsScopeBar="YES" id="4uG-ia-iXM">
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <scopeButtonTitles>
+                                <string>Department</string>
+                                <string>Employee</string>
+                            </scopeButtonTitles>
+                            <connections>
+                                <outlet property="delegate" destination="lvb-1B-GbS" id="LsR-05-PNp"/>
+                            </connections>
+                        </searchBar>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="ALc-TA-4dY">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="72" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ALc-TA-4dY" id="BA6-pb-A4o">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -28,12 +40,12 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="lvb-1B-GbS" id="dNr-UM-Fyv"/>
-                            <outlet property="delegate" destination="lvb-1B-GbS" id="V5L-aG-cJU"/>
+                            <outlet property="dataSource" destination="lvb-1B-GbS" id="1TQ-1R-hzr"/>
+                            <outlet property="delegate" destination="lvb-1B-GbS" id="Oxi-cp-2Iv"/>
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="FYa-t9-rno">
+                    <navigationItem key="navigationItem" title="Department Table" id="FYa-t9-rno">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mca-oF-LBp">
                             <connections>
                                 <segue destination="Vyp-5V-ojz" kind="presentation" identifier="detailInfo" id="Btl-HE-4Y6"/>
@@ -43,10 +55,23 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="searchBar" destination="4uG-ia-iXM" id="cdY-u9-ba7"/>
+                        <outlet property="searchDisplayController" destination="9O9-wo-gPs" id="yWY-O4-bm2"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dV0-Nx-eNr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="9O9-wo-gPs">
+                    <connections>
+                        <outlet property="delegate" destination="lvb-1B-GbS" id="X8l-Ip-fOE"/>
+                        <outlet property="searchBar" destination="4uG-ia-iXM" id="KF8-0B-ZSg"/>
+                        <outlet property="searchContentsController" destination="lvb-1B-GbS" id="Iv0-vy-8tN"/>
+                        <outlet property="searchResultsDataSource" destination="lvb-1B-GbS" id="604-re-psm"/>
+                        <outlet property="searchResultsDelegate" destination="lvb-1B-GbS" id="rpt-g0-7Kr"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="-927" y="185"/>
+            <point key="canvasLocation" x="-985" y="31"/>
         </scene>
         <!--Detail Department View Controller-->
         <scene sceneID="yC0-AR-NBN">
